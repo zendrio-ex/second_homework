@@ -1,0 +1,15 @@
+{
+    "default": {
+        "google_drive": "https://drive.google.com/drive/folders/19BaPt0biYV4cRhEcY_S9eMSFszR0QYEm"
+    },
+    "development": {
+        "logging": {
+            "something1": "",
+            "something2": ""
+        },
+        "key": {
+            "something1": "",
+            "something2": ""
+        }
+    }
+}

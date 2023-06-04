@@ -1,0 +1,7 @@
+version: '0.1.0'
+services:
+  prediction_service:
+    build: ./
+    ports:
+      - 8000:8000
+    container_name: prediction_service
