@@ -3,8 +3,7 @@ import os
 import toml
 import pandas as pd
 import numpy as np
-from src.application.utils import PredictionResponse, request_id, DataPayload, cat_list, num_list
-from load_model import model
+from src.application.utils import PredictionResponse, request_id, model, DataPayload, cat_list, num_list
 from catboost import FeaturesData, Pool
 from loguru import logger
 

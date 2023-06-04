@@ -1,4 +1,5 @@
 from pydantic import BaseModel, validator
+from catboost import CatBoostRegressor
 
 cat_list = [
     'sex',
@@ -73,3 +74,6 @@ class RequestId:
 
 
 request_id = RequestId()
+
+model = CatBoostRegressor()
+model.load_model('./model/model.cbm')
