@@ -7,6 +7,9 @@ from src.application.utils import request_id
 from loguru import logger
 
 
+logger.add('./logging/logging.txt')
+
+
 async def request_middleware(request: Request, call_next):
     request_id.set(str(uuid.uuid4()))
     try:

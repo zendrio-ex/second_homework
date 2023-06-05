@@ -1,4 +1,3 @@
-# unused
 from dynaconf import Dynaconf
 
 settings = Dynaconf(

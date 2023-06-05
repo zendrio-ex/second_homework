@@ -1,8 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 import os
 import toml
 import pandas as pd
 import numpy as np
+from src.config import settings
 from src.application.utils import PredictionResponse, request_id, model, DataPayload, cat_list, num_list
 from catboost import FeaturesData, Pool
 from loguru import logger
@@ -12,7 +13,7 @@ info_router = APIRouter(prefix='/info')
 
 
 @info_router.get('/version', tags=['Info'])
-def version():
+async def version():
     path = os.path.join(os.getcwd(), 'pyproject.toml')
     parsed_pyproject = toml.load(path)
     return {'version': parsed_pyproject['tool']['poetry']['version']}
@@ -22,7 +23,7 @@ def version():
              response_model=PredictionResponse,
              description="""return prediction"""
              )
-def get_prediction(request: DataPayload):
+async def get_prediction(request: DataPayload):
     data = pd.DataFrame(request.data, index=[0])
     
     data = Pool(data=FeaturesData(num_feature_data=np.float32(data[num_list].values),
@@ -41,7 +42,7 @@ def get_prediction(request: DataPayload):
 @router.get("/",
             description="""return information"""
             )
-def get_docs():
+async def get_docs():
     return {
         "requestId": request_id.get(),
         "information": "prediction"
